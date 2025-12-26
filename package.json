@@ -1,5 +1,7 @@
 {
   "name": "brut-calculator",
+  "productName": "Gross Salary Calculator",
+  "author": "Luca Petrescu",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -17,13 +19,9 @@
     "dist:win": "npm run transpile:electron && npm run build && electorn-builder --win --x64"
   },
   "dependencies": {
-    "@tailwindcss/vite": "4.1.18",
-    "autoprefixer": "10.4.23",
     "cross-env": "10.1.0",
-    "postcss": "8.5.6",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
-    "tailwindcss": "4.1.18",
     "xml2js": "0.6.2"
   },
   "devDependencies": {
@@ -33,6 +31,7 @@
     "@types/react-dom": "^19.2.3",
     "@types/xml2js": "0.4.14",
     "@vitejs/plugin-react": "^5.1.1",
+    "autoprefixer": "10.4.23",
     "electron": "39.2.7",
     "electron-builder": "26.0.12",
     "eslint": "^9.39.1",
@@ -40,6 +39,8 @@
     "eslint-plugin-react-refresh": "^0.4.24",
     "globals": "^16.5.0",
     "npm-run-all": "4.1.5",
+    "postcss": "8.5.6",
+    "tailwindcss": "3.4.19",
     "typescript": "~5.9.3",
     "typescript-eslint": "^8.46.4",
     "vite": "^7.2.4"
