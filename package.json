@@ -16,7 +16,7 @@
     "transpile:electron": "tsc -b src/electron/tsconfig.json",
     "dist:mac": "npm run transpile:electron && npm run build && electron-builder --mac --arm64",
     "dist:linux": "npm run transpile:electron && npm run build && electron-builder --linux --x64",
-    "dist:win": "npm run transpile:electron && npm run build && electorn-builder --win --x64"
+    "dist:win": "npm run transpile:electron && npm run build && electron-builder --win --x64"
   },
   "dependencies": {
     "cross-env": "10.1.0",
