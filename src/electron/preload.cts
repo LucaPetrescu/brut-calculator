@@ -5,6 +5,9 @@ electron.contextBridge.exposeInMainWorld("electron", {
     return ipcOn("getBNRCourseRate", (courseRates) => callback(courseRates));
   },
   getBNRCourseRate: async () => electron.ipcRenderer.invoke("getBNRCourseRate"),
+  minimizeWindow: () => electron.ipcRenderer.send("minimize-window"),
+  maximizeWindow: () => electron.ipcRenderer.send("maximize-window"),
+  closeWindow: () => electron.ipcRenderer.send("close-window"),
 } satisfies Window["electron"]);
 
 export function ipcInvoke<Key extends keyof EventPayloadMapping>(
