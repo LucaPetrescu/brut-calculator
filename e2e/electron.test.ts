@@ -22,3 +22,11 @@ test("custom frame should minimize the mainWindow", async () => {
   });
   expect(isMinimized).toBe(true);
 });
+
+test("custom frame should maximize the mainwindow", async () => {
+  await mainPage.click("#maximize");
+  const isMaximized = await electronApp.evaluate((electron) => {
+    return electron.BrowserWindow.getAllWindows()[0].isMaximized();
+  });
+  expect(isMaximized).toBe(true);
+});
