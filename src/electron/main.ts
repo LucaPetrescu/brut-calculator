@@ -1,5 +1,5 @@
 import { app, BrowserWindow } from "electron";
-import { ipcHandle, registerWebContentsAction } from "./util.js";
+import { ipcHandle, registerWebContentsAction, ipcMainOn } from "./util.js";
 
 import { getBNRCourseRate, fetchBNRCourseRate } from "./courseManager.js";
 import { getPreloadPath, getUIPath } from "./pathResolve.js";
@@ -10,6 +10,7 @@ app.on("ready", async () => {
     webPreferences: {
       preload: getPreloadPath(),
     },
+    frame: false,
   });
 
   if (isDev()) {
@@ -28,4 +29,42 @@ app.on("ready", async () => {
   ipcHandle("getBNRCourseRate", async () => {
     return await fetchBNRCourseRate();
   });
+
+  ipcMainOn("sendFrameAction", (payload) => {
+    switch (payload) {
+      case "CLOSE":
+        mainWindow.close();
+        break;
+      case "MAXIMIZE":
+        mainWindow.maximize();
+        break;
+      case "MINIMIZE":
+        mainWindow.minimize();
+        break;
+    }
+  });
+
+  handleCloseEvents(mainWindow);
 });
+
+function handleCloseEvents(mainWindow: BrowserWindow) {
+  let willClose = false;
+  mainWindow.on("close", (e: Electron.Event) => {
+    if (willClose) {
+      return;
+    }
+    e.preventDefault();
+    mainWindow.hide();
+    if (app.dock) {
+      app.dock.hide();
+    }
+  });
+
+  app.on("before-quit", () => {
+    willClose = true;
+  });
+
+  mainWindow.on("show", () => {
+    willClose = false;
+  });
+}

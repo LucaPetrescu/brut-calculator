@@ -7,6 +7,7 @@ import type { Currency } from "./utils/types/Currency";
 import { CurrencyRateDisplay } from "./components/CurrencyRateDisplay";
 import { SalaryInput } from "./components/SalaryInput";
 import { SalaryResultField } from "./components/SalaryResultField";
+import { Header } from "./components/Header";
 
 function App() {
   const [salary, setSalary] = useState<number>(0);
@@ -32,8 +33,9 @@ function App() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
+      <Header />
       <div className="absolute inset-0 bg-gradient-to-tr from-blue-500/10 via-transparent to-purple-500/10 pointer-events-none" />
-      <div className="relative z-10 container mx-auto px-4 py-8 max-w-7xl">
+      <div className="relative z-10 container mx-auto px-4 py-8 max-w-7xl pt-16">
         <div className="text-center mb-8 space-y-4">
           <h1 className="text-5xl font-bold bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
             Calculator Salariu BRUT

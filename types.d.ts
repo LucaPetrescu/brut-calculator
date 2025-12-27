@@ -6,6 +6,7 @@ type Rates = {
 
 type EventPayloadMapping = {
   getBNRCourseRate: Rates;
+  sendFrameAction: FrameWindowAction;
 };
 
 type FrameWindowAction = "CLOSE" | "MINIMIZE" | "MAXIMIZE";
@@ -18,6 +19,6 @@ interface Window {
       callback: (rates: Rates) => void
     ) => UnsubscribeFunction;
     getBNRCourseRate: () => Promise<Rates>;
-    sendFrameAction: (action: FrameWindowActino) => void;
+    sendFrameAction: (action: FrameWindowAction) => void;
   };
 }

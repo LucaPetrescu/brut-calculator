@@ -16,14 +16,9 @@ test.afterEach(async () => {
 });
 
 test("custom frame should minimize the mainWindow", async () => {
-  await expect(mainPage.locator("#minimize")).toBeVisible();
-
   await mainPage.click("#minimize");
-  await expect
-    .poll(async () => {
-      return electronApp.evaluate((electron) =>
-        electron.BrowserWindow.getAllWindows()[0].isMinimized()
-      );
-    })
-    .toBe(true);
+  const isMinimized = await electronApp.evaluate((electron) => {
+    return electron.BrowserWindow.getAllWindows()[0].isMinimized();
+  });
+  expect(isMinimized).toBe(true);
 });
